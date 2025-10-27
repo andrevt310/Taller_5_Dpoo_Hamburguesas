@@ -10,17 +10,17 @@ public class ProductoAjustado implements Producto
     /**
      * El producto base que el cliente sobre el cual el cliente quiere hacer ajustes
      */
-    private ProductoMenu productoBase;
+    public ProductoMenu productoBase;
 
     /**
      * La lista de ingrediente que el usuario quiere agregar. El mismo ingrediente puede aparecer varias veces.
      */
-    private ArrayList<Ingrediente> agregados;
+    public ArrayList<Ingrediente> agregados;
 
     /**
      * La lista de ingrediente que el usuario quiere eliminar.
      */
-    private ArrayList<Ingrediente> eliminados;
+    public ArrayList<Ingrediente> eliminados;
 
     /**
      * Construye un nuevo producto ajustado a partir del producto base y sin modificaciones
@@ -45,7 +45,11 @@ public class ProductoAjustado implements Producto
     @Override
     public int getPrecio( )
     {
-        return 0;
+    	 int precioTotal = productoBase.getPrecio();
+    	    for (Ingrediente ing : agregados){
+    	        precioTotal += ing.getCostoAdicional();
+    	    }
+    	    return precioTotal;
     }
 
     /**
